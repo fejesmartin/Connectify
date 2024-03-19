@@ -1,9 +1,12 @@
 package com.example.connectify.models;
 import com.example.connectify.enums.Role;
+import lombok.Data;
+
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Data
 @Table(name = "users")
 public class User {
 
