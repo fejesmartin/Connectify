@@ -1,9 +1,8 @@
-package com.example.connectify.services;
-import com.example.connectify.models.User;
+package com.example.connectify.api.services;
+import com.example.connectify.api.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
 

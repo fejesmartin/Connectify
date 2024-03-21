@@ -1,4 +1,4 @@
-package com.example.connectify.enums;
+package com.example.connectify.api.enums;
 
 public enum Role {
     USER,

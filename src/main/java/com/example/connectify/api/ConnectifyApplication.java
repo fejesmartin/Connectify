@@ -1,4 +1,4 @@
-package com.example.connectify;
+package com.example.connectify.api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

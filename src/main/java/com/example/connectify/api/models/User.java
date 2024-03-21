@@ -1,8 +1,9 @@
-package com.example.connectify.models;
-import com.example.connectify.enums.Role;
+package com.example.connectify.api.models;
+import com.example.connectify.api.enums.Role;
+import jakarta.persistence.*;
+
 import lombok.Data;
 
-import javax.persistence.*;
 import java.util.Set;
 
 @Entity
