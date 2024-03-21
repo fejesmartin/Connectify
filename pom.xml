@@ -40,6 +40,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
 		<!-- PostgreSQL Driver for connecting to PostgreSQL database -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
@@ -81,6 +82,7 @@
 			<artifactId>jjwt</artifactId>
 			<version>0.9.1</version> <!-- Version of JSON Web Token library -->
 		</dependency>
+
 	</dependencies>
 
 	<build>
