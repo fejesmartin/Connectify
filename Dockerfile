@@ -1,14 +1,17 @@
-# Use the official OpenJDK 16 image as a base image
-FROM openjdk:21-jdk-slim
+# Official Maven image as a parent image
+FROM maven:eclipse-temurin AS build
 
-# Set the working directory inside the container
+# Set the working directory to /app
 WORKDIR /app
 
-# Copy the packaged Spring Boot application JAR file into the container
-COPY target/connectify-0.0.1-SNAPSHOT.jar app.jar
+# Copy the project files
+COPY pom.xml .
+COPY src ./src
 
-# Expose the port that the Spring Boot application will run on
+RUN mvn install -DskipTests
+
+# Make port 8080 available to the world outside this container
 EXPOSE 8080
 
-# Run the Spring Boot application when the container starts
-CMD ["java", "-jar", "app.jar"]
+# Run app when the container launches
+CMD ["java", "-jar", "target/connectify-0.0.1-SNAPSHOT.jar"]
