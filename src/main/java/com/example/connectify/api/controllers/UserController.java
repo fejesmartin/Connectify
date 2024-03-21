@@ -1,13 +1,14 @@
-package com.example.connectify.controllers;
-import com.example.connectify.models.User;
+package com.example.connectify.api.controllers;
+import com.example.connectify.api.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import com.example.connectify.services.UserService;
+import com.example.connectify.api.services.UserService;
 
 import java.util.List;
 
+/** ---- CONTROLLER FOR ADMIN USAGE ---- **/
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -19,24 +20,24 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User createdUser = userService.createUser(user);
         return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/getAll")
     public List<User> getAllUsers(){
         return userService.getAllUsers();
     }
 
-    @GetMapping
-    public User getUserById(Long id){
+    @GetMapping("/getById/{id}")
+    public User getUserById(@PathVariable long id){
         return userService.getUserById(id);
     }
 
-    @DeleteMapping
-    public void deleteUserById(long id){
+    @DeleteMapping("/deleteById/{id}")
+    public void deleteUserById(@PathVariable long id){
          userService.deleteUser(id);
     }
 
