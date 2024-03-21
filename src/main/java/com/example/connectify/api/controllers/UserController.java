@@ -8,6 +8,7 @@ import com.example.connectify.api.services.UserService;
 
 import java.util.List;
 
+/** ---- CONTROLLER FOR ADMIN USAGE ---- **/
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
