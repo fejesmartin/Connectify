@@ -1,20 +1,29 @@
 package com.example.connectify.api.services;
 import com.example.connectify.api.models.User;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserService {
-
-    private final UserRepository userRepository;
+public class UserService{
 
     @Autowired
-    public UserService(UserRepository userRepository) {
+    private UserRepository userRepository;
+
+
+    private final PasswordEncoder passwordEncoder;
+
+
+    @Autowired
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
     }
+
 
     public User createUser(User user) {
         try {
@@ -33,6 +42,7 @@ public class UserService {
             throw new RuntimeException("An error occurred while retrieving users.", e);
         }
     }
+
 
     public User getUserById(Long userId) {
         try {
@@ -74,5 +84,24 @@ public class UserService {
             throw new RuntimeException("An error occurred while deleting the user with ID " + userId + ".", e);
         }
     }
+
+    public User getUserByUsername(String username) {
+        try {
+            Optional<User> optionalUser = userRepository.getUserByUsername(username);
+            return optionalUser.orElseThrow(() -> new IllegalArgumentException("User with username " + username + " not found."));
+        } catch (Exception e) {
+            throw new RuntimeException("Error retrieving user by username", e);
+        }
+    }
+
+    public User getUserByEmail(String email) {
+        try {
+            Optional<User> optionalUser = userRepository.getUserByEmail(email);
+            return optionalUser.orElseThrow(() -> new IllegalArgumentException("User with email " + email + " not found."));
+        } catch (Exception e) {
+            throw new RuntimeException("Error retrieving user by email", e);
+        }
+    }
+
 
 }
