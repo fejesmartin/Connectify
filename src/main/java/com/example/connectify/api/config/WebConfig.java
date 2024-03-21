@@ -1,6 +1,5 @@
 package com.example.connectify.api.config;
 
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpHeaders;
@@ -16,7 +15,7 @@ import java.util.Arrays;
 public class WebConfig {
 
     @Bean
-    public FilterRegistrationBean corsFilter(){
+    public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration configuration = new CorsConfiguration();
         configuration.setAllowCredentials(true);
@@ -33,8 +32,6 @@ public class WebConfig {
                 HttpMethod.DELETE.name()
         ));
         source.registerCorsConfiguration("/**", configuration);
-        FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
-        bean.setOrder(-102); //bean to be executed first
-        return bean;
+        return new CorsFilter(source);
     }
 }
