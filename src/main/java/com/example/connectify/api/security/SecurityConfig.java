@@ -1,10 +1,14 @@
 package com.example.connectify.api.security;
 
-import com.example.connectify.api.config.KeyConfig;
-import com.nimbusds.jose.jwk.source.ImmutableSecret;
+import com.example.connectify.api.services.secrets.RSAKeys;
+import com.nimbusds.jose.jwk.JWK;
+import com.nimbusds.jose.jwk.JWKSet;
+import com.nimbusds.jose.jwk.RSAKey;
+import com.nimbusds.jose.jwk.source.ImmutableJWKSet;
 import com.nimbusds.jose.jwk.source.JWKSource;
 import com.nimbusds.jose.proc.SecurityContext;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -28,15 +32,14 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
 
-    private final KeyConfig keyConfig;
-    private final UserDetailsService userDetailsService;
+    private final RSAKeys keys;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> {
-                    auth.requestMatchers("/api/**/**").permitAll();
+                    auth.requestMatchers("/api/**").permitAll();
                     auth.anyRequest().authenticated();
                 })
                 .oauth2ResourceServer(oauth2 -> oauth2
@@ -52,29 +55,34 @@ public class SecurityConfig {
         return new BCryptPasswordEncoder();
     }
 
-    @Bean
     @Primary
-    public AuthenticationManager authenticationManager() {
+    @Bean
+    public AuthenticationManager userAuthManager(@Qualifier("userDetailsServiceImpl") UserDetailsService userDetailsService)
+    {
         DaoAuthenticationProvider daoProvider = new DaoAuthenticationProvider();
         daoProvider.setPasswordEncoder(passwordEncoder());
         daoProvider.setUserDetailsService(userDetailsService);
         return new ProviderManager(daoProvider);
     }
 
-
     @Bean
-    public JwtDecoder jwtDecoder() {
-        return NimbusJwtDecoder.withSecretKey(keyConfig.secretKey()).build();
+    public JwtDecoder jwtDecoder()
+    {
+        return NimbusJwtDecoder.withPublicKey(keys.getPublicKey()).build();
     }
 
     @Bean
-    public JwtEncoder jwtEncoder() {
-        JWKSource<SecurityContext> jwkSource = new ImmutableSecret<>(keyConfig.secretKey().getEncoded());
-        return new NimbusJwtEncoder(jwkSource);
+    public JwtEncoder jwtEncoder()
+    {
+        JWK jwk = new RSAKey.Builder(keys.getPublicKey()).privateKey(keys.getPrivateKey()).build();
+        JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
+        return new NimbusJwtEncoder(jwks);
     }
 
+
     @Bean
-    public JwtAuthenticationConverter jwtAuthenticationConverter() {
+    public JwtAuthenticationConverter jwtAuthenticationConverter()
+    {
         JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter = new JwtGrantedAuthoritiesConverter();
         jwtGrantedAuthoritiesConverter.setAuthoritiesClaimName("roles");
         jwtGrantedAuthoritiesConverter.setAuthorityPrefix("ROLE_");
@@ -82,4 +90,5 @@ public class SecurityConfig {
         jwtConverter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter);
         return jwtConverter;
     }
+
 }
