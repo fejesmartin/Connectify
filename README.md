@@ -10,9 +10,3 @@ Connectify is a social media platform designed to help you stay connected with f
 - **Send Messages:** Have private conversations with your friends through our messaging feature.
 - **Get Notified:** Receive notifications for new likes, comments, and messages, so you never miss out on anything important.
 - **Customize Your Profile:** Personalize your profile with your own information and settings.
-
-## Questions or Feedback? 💬
-
-If you have any questions or feedback, don't hesitate to reach out! You can contact [Fejes Martin](fejes.martin00@gmail.com) for assistance.
-
-Let's stay connected and make Connectify even better together! Happy connecting! 🎉
