@@ -35,8 +35,6 @@ public class User implements UserDetails {
     )
     private Set<Role> authorities;
 
-    private boolean enabled;
-
     public Long getUserId() {
         return this.id;
     }
