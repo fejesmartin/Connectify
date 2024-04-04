@@ -1,5 +1,6 @@
 package com.example.connectify.api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,7 @@ public class Comment {
     private Long id;
 
     @ManyToOne
+    @JsonIgnore
     private User author;
 
     @ManyToOne
