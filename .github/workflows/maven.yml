@@ -20,8 +20,7 @@ jobs:
         java-version: '21'
         distribution: 'adopt'
         server-id: github
-        server-username: ${{ github.actor }}
-        server-password: ${{ secrets.GITHUB_TOKEN }}
+        overwrite: true
 
     - name: Cache Maven dependencies
       uses: actions/cache@v2
