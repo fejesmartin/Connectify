@@ -23,7 +23,7 @@ jobs:
         overwrite: true
 
     - name: Navigate to the directory with pom.xml
-      run: cd Connectify/ConnectifyApp
+      run: cd ConnectifyApp
 
     - name: Cache Maven dependencies
       uses: actions/cache@v2
