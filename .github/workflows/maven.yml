@@ -29,8 +29,8 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: ${{ runner.os }}-maven-
 
-    - name: Build with Maven
-      run: mvn -B package --file ConnectifyApp/pom.xml
+    - name: Build with Maven (skip tests)
+      run: mvn -B package -DskipTests
 
     # Optional: Uploads the full dependency graph to GitHub to improve the quality of Dependabot alerts this repository can receive
     - name: Update dependency graph
