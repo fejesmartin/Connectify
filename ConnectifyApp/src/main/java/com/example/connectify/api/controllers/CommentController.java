@@ -3,6 +3,7 @@ package com.example.connectify.api.controllers;
 import com.example.connectify.api.models.Comment;
 import com.example.connectify.api.models.CommentDTO;
 import com.example.connectify.api.services.CommentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/comments")
 public class CommentController {
 
+    @Autowired
     private CommentService commentService;
 
     @PostMapping("/create")

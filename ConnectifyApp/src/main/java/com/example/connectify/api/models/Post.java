@@ -1,5 +1,6 @@
 package com.example.connectify.api.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,13 +18,14 @@ public class Post {
     private Long id;
 
     @ManyToOne
+    @JsonIgnore
     private User author;
 
     private String content;
 
     private Instant timestamp = Instant.now();
 
-    @OneToMany(mappedBy = "post")
+    @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
 }

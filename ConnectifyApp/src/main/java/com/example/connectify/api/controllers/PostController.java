@@ -3,6 +3,7 @@ package com.example.connectify.api.controllers;
 import com.example.connectify.api.models.Post;
 import com.example.connectify.api.models.PostDTO;
 import com.example.connectify.api.services.PostService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/api/posts")
 public class PostController {
 
+    @Autowired
     private PostService postService;
 
     @PostMapping("/create")
