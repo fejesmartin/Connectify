@@ -1,0 +1,25 @@
+<div class="row justify-content-md-center">
+    <div class="col-4">
+        <div class="card" style="width: '18rem'">
+            <div class="card-body">
+                <h2 class="card-title">Response from backend</h2>
+                <p class="card-text">All users:</p>
+                <ul>
+                    <li *ngFor="let user of data">
+                        <div>
+                            <p>ID: {{ user.id }}</p>
+                            <p>Username: {{ user.username }}</p>
+                            <p>Email: {{ user.email }}</p>
+                            <p>Authorities: {{ user.authorities }}</p>
+                            <p>Enabled: {{ user.enabled }}</p>
+                            <p>User ID: {{ user.userId }}</p>
+                            <p>Account Non Expired: {{ user.accountNonExpired }}</p>
+                            <p>Account Non Locked: {{ user.accountNonLocked }}</p>
+                            <p>Credentials Non Expired: {{ user.credentialsNonExpired }}</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
