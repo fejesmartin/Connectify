@@ -18,12 +18,9 @@ public class Comment {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "user_id")
     private User author;
 
     @ManyToOne
-    @JsonIgnore
-    @JoinColumn(name = "post_id")
     private Post post;
 
     private String content;
@@ -31,10 +28,9 @@ public class Comment {
     private Instant timestamp = Instant.now();
 
     @ManyToOne
-    @JoinColumn(name = "parent_comment_id")
     private Comment parentComment;
 
-    @OneToMany(mappedBy = "parentComment", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "parentComment")
     private List<Comment> replies = new ArrayList<>();
 
 }

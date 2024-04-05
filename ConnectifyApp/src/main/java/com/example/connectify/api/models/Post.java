@@ -19,7 +19,6 @@ public class Post {
 
     @ManyToOne
     @JsonIgnore
-    @JoinColumn(name = "user_id")
     private User author;
 
     private String content;
@@ -27,7 +26,6 @@ public class Post {
     private Instant timestamp = Instant.now();
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnore
     private List<Comment> comments = new ArrayList<>();
 
 }
