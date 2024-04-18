@@ -1,12 +1,16 @@
-<mat-sidenav-container>
-    <mat-sidenav>
-        <mat-nav-list>
-            <a mat-list-item routerLink="/home">Home</a>
-            <a mat-list-item routerLink="/profile">Profile</a>
-            <!-- Add more navigation links as needed -->
-        </mat-nav-list>
+<mat-toolbar color="primary">
+    <span>My Social Media Platform</span>
+  </mat-toolbar>
+  
+  <mat-sidenav-container class="sidebar-container">
+    <mat-sidenav mode="side">
     </mat-sidenav>
-    <mat-sidenav-content>
-        <!-- Main content -->
+    <mat-sidenav-content class="sidebar-content">
+        <mat-nav-list>
+            <a mat-list-item routerLink="/" routerLinkActive="active">Home</a>
+            <a mat-list-item routerLink="/profile" routerLinkActive="active">Profile</a>
+          </mat-nav-list>
+      <router-outlet></router-outlet>
     </mat-sidenav-content>
-</mat-sidenav-container>
+  </mat-sidenav-container>
+  

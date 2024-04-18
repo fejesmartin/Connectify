@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { FeedComponent } from './feed/feed.component';
 import { MatCardModule } from '@angular/material/card';
@@ -11,16 +10,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-import { AllusersComponent } from './allusers/allusers.component';
-
-
+import { AppRoutingModule } from './app-routing.module';
+import { HomeComponent } from './home/home.component';
+import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
+import { AuthenticatorComponent } from './authenticator/authenticator.component';
+import { CookieService } from 'ngx-cookie-service';
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
     SidebarComponent,
     FeedComponent,
-    AllusersComponent
+    HomeComponent,
+    AuthenticatorComponent
   ],
   imports: [
     BrowserModule,
@@ -30,9 +31,11 @@ import { AllusersComponent } from './allusers/allusers.component';
     MatIconModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    AppRoutingModule,
+    MatBottomSheetModule
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [CookieService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

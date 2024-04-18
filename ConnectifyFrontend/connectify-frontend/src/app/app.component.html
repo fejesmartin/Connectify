@@ -1,4 +1,24 @@
-<app-header></app-header>
-<app-sidebar></app-sidebar>
-<app-feed></app-feed>
-<app-allusers></app-allusers>
+<div id="nav-bar">
+    <div id="nav-bar-content">
+        <div id="nav-bar-left">
+            <div class="nav-bar-items">Connectify</div>
+        </div>
+
+        <div id="nav-bar-right">
+            <ng-container *ngIf="isAuthenticated(); else loginSection">
+                <div class="nav-bar-items" (click)="toggleDropdown()">Welcome, {{ getUsername() }}</div>
+                <div class="dropdown-menu" *ngIf="showDropdown">
+                    <div class="dropdown-item">Profile</div>
+                    <div class="dropdown-item">Settings</div>
+                    <div class="dropdown-item" (click)="logout()">Logout</div>
+                </div>
+            </ng-container>
+            <ng-template #loginSection>
+                <div class="nav-bar-items" (click)="onLoginClick()">Login</div>
+            </ng-template>
+        </div>
+    </div>
+</div>
+
+
+<router-outlet></router-outlet>
