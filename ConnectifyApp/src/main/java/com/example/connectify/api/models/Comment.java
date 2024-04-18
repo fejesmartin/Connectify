@@ -18,9 +18,11 @@ public class Comment {
 
     @ManyToOne
     @JsonIgnore
+    @JoinColumn(name = "user_id")
     private User author;
 
     @ManyToOne
+    @JoinColumn(name = "post_id")
     private Post post;
 
     private String content;
