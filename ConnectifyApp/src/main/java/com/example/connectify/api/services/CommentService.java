@@ -7,9 +7,13 @@ import com.example.connectify.api.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.List;
+
 @Service
+@Transactional
 public class CommentService {
 
     @Autowired
@@ -21,6 +25,7 @@ public class CommentService {
     @Autowired
     private PostRepository postRepository;
 
+    @Transactional
     public Comment createComment(CommentDTO commentDTO) {
         // Convert DTO to entity
         Comment comment = new Comment();
@@ -39,22 +44,30 @@ public class CommentService {
         return commentRepository.save(comment);
     }
 
+    @Transactional(readOnly = true)
+    public List<Comment> getAllComments() {
+        return commentRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
     public Comment getCommentById(Long commentId) {
         return commentRepository.findById(commentId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Comment not found"));
     }
 
-    public Comment updateCommentById(Long commentId, CommentDTO commentDTO){
+    @Transactional
+    public Comment updateCommentById(Long commentId, CommentDTO commentDTO) {
         Comment existingComment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Comment not found"));
-        if(commentDTO.getContent() != null){
+        if (commentDTO.getContent() != null) {
             existingComment.setContent(commentDTO.getContent());
         }
         System.out.println("Comment updated");
         return commentRepository.save(existingComment);
     }
 
-    public void deleteCommentById(Long commentId){
+    @Transactional
+    public void deleteCommentById(Long commentId) {
         Comment existingComment = commentRepository.findById(commentId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Comment not found"));
 
