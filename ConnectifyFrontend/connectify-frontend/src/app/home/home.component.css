@@ -1,0 +1,44 @@
+#home-page{
+    width: 100%;
+    height: 100%;
+}
+
+#home-page-landing{
+    width: 100%;
+    height: 100%;
+    background-image: url("../../assets/homepic.png");
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 100%;
+    min-height: 800px;
+}
+
+
+#landing-left{
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+}
+
+#landing-left-content{
+    text-align: right;
+}
+
+#landing-left-content h1{
+    font-size: 7em;
+    padding: 50px;
+}
+
+#landing-left-content p{
+    font-size: 4em;
+    padding: 50px;
+}
+
+#landing-left-content button{
+    font-size: 3em;
+    padding: 40px;
+    margin: 50px;
+}
