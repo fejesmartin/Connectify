@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
@@ -25,6 +27,12 @@ public class PostController {
     public ResponseEntity<Post> getPostById(@PathVariable Long postId){
         Post post = postService.getPostById(postId);
         return ResponseEntity.ok(post);
+    }
+
+    @GetMapping("/getAll")
+    public ResponseEntity<List<Post>> getAllPosts(){
+        List<Post> posts = postService.getAllPosts();
+        return ResponseEntity.ok(posts);
     }
 
     @PutMapping("/updateById/{postId}")
