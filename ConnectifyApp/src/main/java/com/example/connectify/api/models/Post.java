@@ -1,6 +1,7 @@
 package com.example.connectify.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -19,6 +20,7 @@ public class Post {
 
     @ManyToOne
     @JsonIgnore
+    @JoinColumn(name = "user_id")
     private User author;
 
     private String content;
@@ -26,6 +28,7 @@ public class Post {
     private Instant timestamp = Instant.now();
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonIgnoreProperties({"author", "post", "content", "timestamp", "parentComment", "replies"})
     private List<Comment> comments = new ArrayList<>();
 
 }
