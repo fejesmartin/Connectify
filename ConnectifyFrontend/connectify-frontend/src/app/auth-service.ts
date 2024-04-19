@@ -11,6 +11,7 @@ import { User } from './models/User';
 })
 export class AuthService {
   constructor(private axiosService: AxiosService, private cookieService: CookieService) {}
+
   token: string = "";
   username: string = "";
   email: string = "";
@@ -23,29 +24,19 @@ export class AuthService {
       const response = await this.axiosService.request('post', baseURL + '/api/auth/login', loginData);
       this.token = response.data.jwt;
 
-      // Store the token in a cookie
+      // Store the token and username in cookies
       this.cookieService.set('auth_token', this.token);
+      this.cookieService.set('username', response.data.username);
 
-      // Fetch user information after successful login
-      await this.fetchUserInfo();
+      // Set the username locally
+      this.username = response.data.username;
     } catch (error) {
       throw new Error('Login failed');
     }
   }
 
-  async fetchUserInfo(): Promise<void> {
-    try {
-      const userInfoResponse: User = await this.axiosService.request('get', baseURL + `/api/users/getByEmail/${this.email}`, null)
-
-      this.username = userInfoResponse.username;
-      console.log(userInfoResponse.username);
-      
-    } catch (error) {
-      console.error('Failed to fetch user information:', error);
-    }
-  }
-
   getUsername(): string {
+    // Retrieve the username from the local variable
     return this.username;
   }
 
@@ -54,7 +45,9 @@ export class AuthService {
   }
 
   logout(): void {
+    // Clear the stored token and username
     this.cookieService.delete('auth_token');
+    this.cookieService.delete('username');
     this.token = "";
     this.username = "";
   }
