@@ -6,12 +6,12 @@
 
         <div id="nav-bar-right">
             <ng-container *ngIf="isAuthenticated(); else loginSection">
-                <div class="nav-bar-items" (click)="toggleDropdown()">Welcome, {{ getUsername() }}</div>
-                <div class="dropdown-menu" *ngIf="showDropdown">
-                    <div class="dropdown-item">Profile</div>
-                    <div class="dropdown-item">Settings</div>
-                    <div class="dropdown-item" (click)="logout()">Logout</div>
-                </div>
+                <div class="nav-bar-items" [matMenuTriggerFor]="userMenu">Welcome, {{ username }}</div>
+                <mat-menu #userMenu="matMenu">
+                    <button mat-menu-item >Profile</button>
+                    <button mat-menu-item >Settings</button>
+                    <button mat-menu-item (click)="logout()">Logout</button>
+                </mat-menu>
             </ng-container>
             <ng-template #loginSection>
                 <div class="nav-bar-items" (click)="onLoginClick()">Login</div>
@@ -19,6 +19,5 @@
         </div>
     </div>
 </div>
-
 
 <router-outlet></router-outlet>
