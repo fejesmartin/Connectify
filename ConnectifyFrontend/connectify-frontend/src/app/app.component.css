@@ -35,3 +35,23 @@
     display: inline-block;
     cursor: pointer;
 }
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-top: none;
+    display: none;
+  }
+  
+  .dropdown-item {
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .dropdown-menu.show {
+    display: block;
+  }
+  

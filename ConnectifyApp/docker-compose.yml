@@ -35,5 +35,12 @@ services:
     ports:
       - "5050:80"
 
+  connectify-frontend:
+    build:
+      context: ../ConnectifyFrontend/connectify-frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:80"
+
 volumes:
   connectify-db-data:

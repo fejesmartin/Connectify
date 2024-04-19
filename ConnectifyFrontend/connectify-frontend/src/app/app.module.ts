@@ -15,6 +15,8 @@ import { HomeComponent } from './home/home.component';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { AuthenticatorComponent } from './authenticator/authenticator.component';
 import { CookieService } from 'ngx-cookie-service';
+import { MatMenuModule } from '@angular/material/menu'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -33,7 +35,8 @@ import { CookieService } from 'ngx-cookie-service';
     MatSidenavModule,
     MatListModule,
     AppRoutingModule,
-    MatBottomSheetModule
+    MatBottomSheetModule,
+    MatMenuModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],
