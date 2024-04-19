@@ -43,7 +43,7 @@ public class UserAuthService {
             return new UserRegistrationResponseDTO(username, email);
 
         } catch (Exception e) {
-            return new UserRegistrationResponseDTO("", "");
+            throw new Error("Invalid username or password");
         }
     }
 
@@ -55,10 +55,10 @@ public class UserAuthService {
             String token = tokenService.generateJwt(auth, userRepository.getUserByEmail(email).get().getUserId());
 
             User user = userRepository.getUserByEmail(email).get();
-            return new UserLoginResponseDTO( user.getEmail(), token);
+            return new UserLoginResponseDTO(user.getUsername(), user.getEmail(), token);
 
         }catch (AuthenticationException e) {
-            return new UserLoginResponseDTO( "", "");
+            throw new Error("Invalid username or password");
         }
     }
 }
