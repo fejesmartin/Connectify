@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class UserLoginResponseDTO {
+    private long id;
     private String username;
     private String email;
     private String jwt;
