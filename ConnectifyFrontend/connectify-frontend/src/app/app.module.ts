@@ -15,7 +15,10 @@ import { HomeComponent } from './home/home.component';
 import { MatBottomSheetModule } from '@angular/material/bottom-sheet';
 import { AuthenticatorComponent } from './authenticator/authenticator.component';
 import { CookieService } from 'ngx-cookie-service';
-import { MatMenuModule } from '@angular/material/menu'
+import { MatMenuModule } from '@angular/material/menu';
+import { MatDialogModule } from '@angular/material/dialog';
+import { PostfeedComponent } from './postfeed/postfeed.component';
+import { CreatepostComponent } from './createpost/createpost.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,9 @@ import { MatMenuModule } from '@angular/material/menu'
     SidebarComponent,
     FeedComponent,
     HomeComponent,
-    AuthenticatorComponent
+    AuthenticatorComponent,
+    PostfeedComponent,
+    CreatepostComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,9 @@ import { MatMenuModule } from '@angular/material/menu'
     MatListModule,
     AppRoutingModule,
     MatBottomSheetModule,
-    MatMenuModule
+    MatMenuModule,
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

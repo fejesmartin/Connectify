@@ -55,7 +55,7 @@ public class UserAuthService {
             String token = tokenService.generateJwt(auth, userRepository.getUserByEmail(email).get().getUserId());
 
             User user = userRepository.getUserByEmail(email).get();
-            return new UserLoginResponseDTO(user.getUsername(), user.getEmail(), token);
+            return new UserLoginResponseDTO(user.getUserId(), user.getUsername(), user.getEmail(), token);
 
         }catch (AuthenticationException e) {
             throw new Error("Invalid username or password");
