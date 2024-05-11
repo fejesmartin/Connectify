@@ -36,6 +36,7 @@ export class AuthenticatorComponent {
       alert("Login successful!");
       loginEmail.value = "";
       loginPassword.value = "";
+      this.router.navigate(["postfeed"]);
     } catch (error) {
       console.error(error);
       alert('Login failed');
