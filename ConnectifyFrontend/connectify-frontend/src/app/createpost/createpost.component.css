@@ -12,6 +12,10 @@ textarea {
     outline: none;
 }
 
+textarea::placeholder {
+    color: lightgray; /* Adjust the color as needed */
+}
+
 #post-preview {
     text-align: right;
     margin-top: 1em;
