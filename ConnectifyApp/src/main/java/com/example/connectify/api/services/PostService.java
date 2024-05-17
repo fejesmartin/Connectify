@@ -32,6 +32,7 @@ public class PostService {
 
         System.out.println("Post created: Id = " + post.getId() +
                 ", Author = " + post.getAuthor().getUsername() +
+                ", Author ID = " + post.getAuthor().getId() +
                 ", Content = " + post.getContent() +
                 ", Timestamp = " + post.getTimestamp());
         return postRepository.save(post);
