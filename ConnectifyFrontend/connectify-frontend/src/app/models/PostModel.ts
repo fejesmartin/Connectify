@@ -1,4 +1,4 @@
 export interface PostModel{
-    id:number,
+    authorId: number,
     content: string
 }
