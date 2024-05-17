@@ -1,0 +1,17 @@
+.profile-card {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 10vh;
+  }
+  
+  .profile-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #bdbdbd; /* Placeholder color for avatar */
+  }
+  
