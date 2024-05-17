@@ -3,6 +3,8 @@ import { AuthService } from '../auth-service';
 import { AxiosService } from '../axios.service';
 import { baseURL } from '../../assets/baseURL';
 import { PostModel } from '../models/PostModel';
+import { CookieService } from 'ngx-cookie-service';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-createpost',
@@ -12,9 +14,9 @@ import { PostModel } from '../models/PostModel';
 export class CreatepostComponent {
 
   selectedImageFile!: File;
-  post:PostModel = {id: 0, content: ""};
+  post:PostModel = {authorId: 0, content: ""};
 
-  constructor(private authService: AuthService, private axiosService: AxiosService) {}
+  constructor(private authService: AuthService, private axiosService: AxiosService, private cookieService: CookieService, private dialog: MatDialog) {}
 
   onPhotoSelected(photoSelector: HTMLInputElement) {
     this.selectedImageFile = photoSelector.files![0];
@@ -30,12 +32,18 @@ export class CreatepostComponent {
   }
 
   onPostClick(commentInput: HTMLTextAreaElement): void{
-    this.post = {id: this.authService.getId(), content: commentInput.value}
+    this.post = {authorId: Number(this.cookieService.get("user_id")), content: commentInput.value}
     try {
-        const response = this.axiosService.request
+        this.axiosService.request("POST",baseURL+"/api/posts/create",this.post);
+        console.log(this.post.authorId);
+        
+        console.log("Post successfully created");
+        alert("Post successfully created. Refresh feed to see your post!")
+        this.dialog.closeAll();
 
     } catch (error) {
-      
+        console.error("Error during creating post: ", error);
+        
     }
   }
 
