@@ -19,6 +19,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatDialogModule } from '@angular/material/dialog';
 import { PostfeedComponent } from './postfeed/postfeed.component';
 import { CreatepostComponent } from './createpost/createpost.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { CreatepostComponent } from './createpost/createpost.component';
     MatBottomSheetModule,
     MatMenuModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

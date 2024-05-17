@@ -19,7 +19,6 @@ public class Post {
     private Long id;
 
     @ManyToOne
-    @JsonIgnore
     @JoinColumn(name = "user_id")
     private User author;
 

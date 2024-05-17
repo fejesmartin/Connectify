@@ -5,12 +5,13 @@ import { RegisterModel } from './models/RegisterModel';
 import { LoginModel } from './models/LoginModel';
 import { CookieService } from 'ngx-cookie-service';
 import { User } from './models/User';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private axiosService: AxiosService, private cookieService: CookieService) {}
+  constructor(private axiosService: AxiosService, private cookieService: CookieService, private router: Router) {}
 
   id: number = 0;
   token: string = "";
@@ -59,6 +60,7 @@ export class AuthService {
     this.token = "";
     this.username = "";
     this.id = 0;
+    this.router.navigate([""]);
   }
 
   isAuthenticated(): boolean {
