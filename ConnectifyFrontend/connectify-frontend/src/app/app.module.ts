@@ -20,6 +20,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { PostfeedComponent } from './postfeed/postfeed.component';
 import { CreatepostComponent } from './createpost/createpost.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { VisitUserProfileComponent } from './visit-user-profile/visit-user-profile.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     HomeComponent,
     AuthenticatorComponent,
     PostfeedComponent,
-    CreatepostComponent
+    CreatepostComponent,
+    VisitUserProfileComponent
   ],
   imports: [
     BrowserModule,

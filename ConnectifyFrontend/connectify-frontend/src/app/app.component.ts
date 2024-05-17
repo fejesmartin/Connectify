@@ -3,6 +3,7 @@ import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { AuthenticatorComponent } from './authenticator/authenticator.component';
 import { AuthService } from './auth-service';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
   showDropdown = false;
   username: string = ""; 
 
-  constructor(private loginSheet: MatBottomSheet, private authService: AuthService, private cookieService: CookieService){
+  constructor(private loginSheet: MatBottomSheet, private authService: AuthService, private cookieService: CookieService, private router: Router){
     this.username = cookieService.get("username");
   }
 
@@ -33,4 +34,9 @@ export class AppComponent {
   logout(): void {
     this.authService.logout();
   }
+
+  showFeed(): void{
+    this.router.navigate(["feed"])
+  }
+
 }
