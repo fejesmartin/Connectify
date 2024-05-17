@@ -3,6 +3,7 @@ import { AuthService } from '../auth-service'; // Import the AuthService
 import { RegisterModel } from '../models/RegisterModel';
 import { LoginModel } from '../models/LoginModel';
 import { Router } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-authenticator',
@@ -13,7 +14,7 @@ export class AuthenticatorComponent {
   state = AuthenticatorCompState.LOGIN;
   passwordMisMatch = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private dialog: MatDialog) {}
 
   onForgotPasswordClick(): void {
     this.state = AuthenticatorCompState.FORGOT_PASSWORD;
@@ -34,9 +35,11 @@ export class AuthenticatorComponent {
     try {
       await this.authService.login(email, password);
       alert("Login successful!");
+      this.dialog.closeAll();
       loginEmail.value = "";
       loginPassword.value = "";
-      this.router.navigate(["postfeed"]);
+      await this.router.navigate(["feed"]);
+      window.location.reload();
     } catch (error) {
       console.error(error);
       alert('Login failed');
