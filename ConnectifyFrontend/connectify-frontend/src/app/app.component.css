@@ -5,6 +5,9 @@
     width: 100%;
     height: 5em;
     z-index: 10;
+    background-color: #020e17; /* Change to the color of your choice */
+  color: white; /* Set text color to white for better contrast */
+  padding: 10px 20px; /* Add padding to the navigation bar */
 }
 
 #nav-bar-content{
@@ -34,6 +37,9 @@
     font-size: 1.5em;
     display: inline-block;
     cursor: pointer;
+}
+.nav-bar-items:hover {
+  text-decoration: underline; /* Underline navigation items on hover for visual feedback */
 }
 
 .dropdown-menu {
