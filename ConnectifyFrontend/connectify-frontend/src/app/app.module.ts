@@ -21,6 +21,7 @@ import { PostfeedComponent } from './postfeed/postfeed.component';
 import { CreatepostComponent } from './createpost/createpost.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { VisitUserProfileComponent } from './visit-user-profile/visit-user-profile.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { VisitUserProfileComponent } from './visit-user-profile/visit-user-profi
     AuthenticatorComponent,
     PostfeedComponent,
     CreatepostComponent,
-    VisitUserProfileComponent
+    VisitUserProfileComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
