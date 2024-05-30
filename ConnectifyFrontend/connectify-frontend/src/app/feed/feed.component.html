@@ -1,28 +1,26 @@
-
-<button id="refresh-btn" mat-button color="primary" (click)="refreshFeed()">Refresh Feed 
-</button>
+<button id="refresh-btn" mat-button color="primary" (click)="refreshFeed()">Refresh Feed</button>
 
 <div class="feed-container">
-   
     <mat-card *ngFor="let post of posts" class="post-card">
         <mat-card-header>
             <div mat-card-avatar class="avatar"></div>
             <mat-card-title id="userName" (click)="visitUserProfile(post.author.username)">{{ post.author.username }}</mat-card-title>
             <mat-card-subtitle>{{ post.timestamp | date: 'medium' }}</mat-card-subtitle>
+            <button mat-icon-button color="primary" (click)="addFriend(post.author.username)">
+                <mat-icon>person_add</mat-icon>
+            </button>
         </mat-card-header>
         <mat-card-content>
             {{ post.content }}
         </mat-card-content>
         <mat-card-actions>
-            <button mat-icon-button color="primary">
+            <button mat-icon-button color="primary" (click)="commentPost(post.id)">
                 <mat-icon>comment</mat-icon>
-              </button>
-              <button mat-icon-button color="primary">
+            </button>
+            <button mat-icon-button color="primary" (click)="sharePost(post.id)">
                 <mat-icon>share</mat-icon>
-              </button>
-              
+            </button>
         </mat-card-actions>
     </mat-card>
 </div>
 <app-postfeed></app-postfeed>
-  
