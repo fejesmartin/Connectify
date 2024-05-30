@@ -22,6 +22,7 @@ import { CreatepostComponent } from './createpost/createpost.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { VisitUserProfileComponent } from './visit-user-profile/visit-user-profile.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { MatFormFieldModule } from '@angular/material/form-field'
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
     MatMenuModule,
     MatDialogModule,
     MatIconModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatFormFieldModule
   ],
   providers: [CookieService],
   bootstrap: [AppComponent],

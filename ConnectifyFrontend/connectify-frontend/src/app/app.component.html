@@ -8,8 +8,8 @@
             <ng-container *ngIf="isAuthenticated(); else loginSection">
                 <div class="nav-bar-items" [matMenuTriggerFor]="userMenu">Welcome, {{ username }}</div>
                 <mat-menu #userMenu="matMenu">
-                    <button mat-menu-item >Profile</button>
-                    <button mat-menu-item (click)="showFeed()" >Feed</button>
+                    <button mat-menu-item (click)="openProfile()">Profile</button>
+                    <button mat-menu-item (click)="showFeed()">Feed</button>
                     <button mat-menu-item >Settings</button>
                     <button mat-menu-item (click)="logout()">Logout</button>
                     
