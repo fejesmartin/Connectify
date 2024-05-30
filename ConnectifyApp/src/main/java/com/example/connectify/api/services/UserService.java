@@ -53,7 +53,7 @@ public class UserService{
                 throw new IllegalArgumentException("User with ID " + userId + " not found.");
             }
         } catch (Exception e) {
-            throw new RuntimeException("An error occurred while retrieving the user with ID " + userId + ".", e);
+            throw new IllegalArgumentException("An error occurred while retrieving the user with ID " + userId + ".", e);
         }
     }
 
@@ -73,7 +73,7 @@ public class UserService{
         } catch (DataIntegrityViolationException e) {
             throw new IllegalArgumentException("User with the same username or email already exists.");
         } catch (Exception e) {
-            throw new RuntimeException("An error occurred while updating the user with ID " + userId + ".", e);
+            throw new IllegalArgumentException("User with ID " + userId + " not found.", e);
         }
     }
 
@@ -90,7 +90,7 @@ public class UserService{
             Optional<User> optionalUser = userRepository.getUserByUsername(username);
             return optionalUser.orElseThrow(() -> new IllegalArgumentException("User with username " + username + " not found."));
         } catch (Exception e) {
-            throw new RuntimeException("Error retrieving user by username", e);
+            throw new IllegalArgumentException("User with username " + username + " not found.", e);
         }
     }
 
@@ -99,7 +99,7 @@ public class UserService{
             Optional<User> optionalUser = userRepository.getUserByEmail(email);
             return optionalUser.orElseThrow(() -> new IllegalArgumentException("User with email " + email + " not found."));
         } catch (Exception e) {
-            throw new RuntimeException("Error retrieving user by email", e);
+            throw new IllegalArgumentException("Error retrieving user by email", e);
         }
     }
 
