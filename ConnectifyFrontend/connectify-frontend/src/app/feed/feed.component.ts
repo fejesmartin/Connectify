@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AxiosService } from '../axios.service';
 import { Post } from '../models/Post';
-import { NavigationExtras, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -26,7 +26,27 @@ export class FeedComponent implements OnInit {
       });
   }
 
-  visitUserProfile(username: string): void{
-    this.router.navigate(["/visit", username])
+  visitUserProfile(username: string): void {
+    this.router.navigate(["/visit", username]);
+  }
+
+  addFriend(username: string): void {
+    this.axiosService.request("POST", `/api/friends/add/${username}`, null)
+      .then(response => {
+        console.log('Friend request sent:', response);
+      })
+      .catch(error => {
+        console.error('Error sending friend request:', error);
+      });
+  }
+
+  commentPost(postId: number): void {
+    console.log('Commenting on post:', postId);
+    // Implement comment functionality
+  }
+
+  sharePost(postId: number): void {
+    console.log('Sharing post:', postId);
+    // Implement share functionality
   }
 }
