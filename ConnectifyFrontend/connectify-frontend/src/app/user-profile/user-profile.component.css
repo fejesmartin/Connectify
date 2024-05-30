@@ -1,0 +1,51 @@
+.header {
+    min-height: 600px;
+    background: linear-gradient(87deg, #f5365c 0, #f56036 100%);
+    background-size: cover;
+    background-position: center top;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .header .mask {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  .header .header-text {
+    font-size: 60px;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    z-index: 1;
+  }
+  .card-profile-image img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 3px solid white;
+  }
+  .card-profile-stats div {
+    margin: 20px;
+  }
+  .card-profile-stats .heading {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  .full-width {
+    width: 100%;
+  }
+  .show-more {
+    color: #f5365c;
+    cursor: pointer;
+  }
+  
+  .head{
+    color: white;
+    font-size: large;
+  }
