@@ -1,63 +1,63 @@
 .feed-container {
-    margin-top: 20vh;
-    display: flex;
-    flex-direction: column;
-    gap: 100px;
-  }
-  
-  .post-card {
-    width: 100%;
-    max-width: 600px;
-    margin: auto;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-  .avatar {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #bdbdbd; /* Placeholder color for avatar */
-  }
-  
-  .mat-card-header {
-    display: flex;
-    align-items: center;
-  }
-  
-  .mat-card-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin-left: 10px;
-  }
-  
-  .mat-card-subtitle {
-    font-size: 14px;
-    color: #757575;
-    margin-left: 10px;
-  }
-  
-  .mat-card-content {
-    font-size: 16px;
-    padding: 16px;
-  }
-  
-  .mat-card-actions {
-    display: flex;
-    justify-content: flex-end;
-    padding: 0 16px 16px;
-  }
-  
-  #refresh-btn {
-    position: absolute;
-    margin-top: -5vh;
-    margin-left: 47.5%;
-    z-index: 20;
-  }
+  margin-top: 20vh;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center; /* Center align items */
+}
 
-  #userName:hover{
-    text-decoration: underline;
-    cursor: pointer;
-  }
-  
+.post-card {
+  width: 100%;
+  max-width: 600px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #bdbdbd; /* Placeholder color for avatar */
+}
+
+.mat-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space between elements */
+}
+
+.mat-card-title {
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.mat-card-subtitle {
+  font-size: 14px;
+  color: #757575;
+  margin-left: 10px;
+}
+
+.mat-card-content {
+  font-size: 16px;
+  padding: 16px;
+}
+
+.mat-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 16px 16px;
+}
+
+#refresh-btn {
+  position: absolute;
+  margin-top: -5vh;
+  margin-left: 47.5%;
+  z-index: 20;
+}
+
+#userName:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
