@@ -39,4 +39,8 @@ export class AppComponent {
     this.router.navigate(["feed"])
   }
 
+  openProfile(): void{
+    this.router.navigate(["/profile", this.username])
+  }
+
 }
