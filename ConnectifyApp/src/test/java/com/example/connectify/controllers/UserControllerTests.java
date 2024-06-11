@@ -1,4 +1,4 @@
-package com.example.connectifyapp.api.controllers;
+package com.example.connectify.controllers;
 
 import com.example.connectify.api.controllers.UserController;
 import com.example.connectify.api.models.User;
