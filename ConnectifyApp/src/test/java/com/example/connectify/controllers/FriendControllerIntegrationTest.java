@@ -1,8 +1,10 @@
 package com.example.connectify.controllers;
 
 import com.example.connectify.api.ConnectifyApplication;
+import com.example.connectify.api.models.FriendRequestDTO;
 import com.example.connectify.api.models.User;
 import com.example.connectify.api.services.FriendService;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,17 +45,13 @@ public class FriendControllerIntegrationTest {
         user2.setUsername("user2");
         user2.setEmail("user2@example.com");
 
-        Mockito.when(friendService.addFriend(user1.getId(), user2.getId())).thenReturn(Optional.of(user2));
-
         mockMvc.perform(MockMvcRequestBuilders.post("/api/friends/add")
-                        .param("userId", String.valueOf(user1.getId()))
-                        .param("friendId", String.valueOf(user2.getId()))
+                        .content(asJsonString(new FriendRequestDTO(user1.getId(), user2.getId())))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(user2.getId()))
-                .andExpect(jsonPath("$.username").value(user2.getUsername()))
-                .andExpect(jsonPath("$.email").value(user2.getEmail()));
+                .andExpect(status().isOk());
+
+        Mockito.verify(friendService).addFriendRequest(user1.getId(), user2.getId());
     }
 
     @Test
@@ -68,14 +66,20 @@ public class FriendControllerIntegrationTest {
         user2.setUsername("user2");
         user2.setEmail("user2@example.com");
 
-        Mockito.when(friendService.removeFriend(user1.getId(), user2.getId())).thenReturn(Optional.of(user2));
-
         mockMvc.perform(MockMvcRequestBuilders.post("/api/friends/remove")
-                        .param("userId", String.valueOf(user1.getId()))
-                        .param("friendId", String.valueOf(user2.getId()))
+                        .content(asJsonString(new FriendRequestDTO(user1.getId(), user2.getId())))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk());
+
+        Mockito.verify(friendService).removeFriend(user1.getId(), user2.getId());
+    }
+
+    // Utility method to convert object to JSON string
+    private String asJsonString(Object obj) throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        return mapper.writeValueAsString(obj);
     }
 }
+
 
