@@ -1,0 +1,38 @@
+.notification-container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .notification-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .notifications-dropdown {
+    display: none;
+    position: absolute;
+    background-color: white;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    width: 300px;
+    right: 0;
+  }
+  
+  .notifications-list {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  
+  .notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .notifications-dropdown.ng-trigger {
+    display: block;
+  }
+  
