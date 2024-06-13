@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import com.example.connectify.api.services.UserService;
 
 import java.util.List;
+import java.util.Set;
 
 /** ---- CONTROLLER FOR ADMIN USAGE ---- **/
 @RestController
@@ -44,6 +45,15 @@ public class UserController {
          userService.deleteUser(id);
     }
 
+    @GetMapping("/getFriendsById/{id}")
+    public Set<User> getFriendsById(@PathVariable long id){
+        return userService.getUserById(id).getFriends();
+    }
+
+    @GetMapping("/getFriendRequests/{id}")
+    public Set<User> getFriendRequestsById(@PathVariable long id){
+        return userService.getUserById(id).getFriendRequests();
+    }
 
 }
 
