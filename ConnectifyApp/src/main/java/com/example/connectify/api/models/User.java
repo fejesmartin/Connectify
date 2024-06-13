@@ -1,6 +1,8 @@
 package com.example.connectify.api.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
@@ -42,7 +44,28 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "friend_id")
     )
+    @JsonManagedReference /* @JsonManagedReference: This annotation is used on the "parent" side of the relationship.
+                             In your case, it's used on User.friends.
+                             It indicates that this side (the friends collection in User) will be serialized normally. */
     private Set<User> friends = new HashSet<>();
+
+    @ManyToMany(mappedBy = "friends")
+    @JsonBackReference /* @JsonBackReference: This annotation is used on the "child" side of the relationship.
+                          It indicates that this side (User.friendOf) should be ignored during serialization to break the loop. */
+    private Set<User> friendOf = new HashSet<>();
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_friend_requests",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "friend_id")
+    )
+    @JsonManagedReference
+    private Set<User> friendRequests = new HashSet<>();
+
+    @ManyToMany(mappedBy = "friendRequests")
+    @JsonBackReference
+    private Set<User> requestedFriends = new HashSet<>();
 
     public Long getUserId() {
         return this.id;
