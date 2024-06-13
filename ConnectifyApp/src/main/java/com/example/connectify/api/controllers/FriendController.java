@@ -1,10 +1,12 @@
 package com.example.connectify.api.controllers;
 
+import com.example.connectify.api.models.User;
 import com.example.connectify.api.services.FriendService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/friends")
@@ -14,22 +16,16 @@ public class FriendController {
     private FriendService friendService;
 
     @PostMapping("/add")
-    public ResponseEntity<String> addFriend(@RequestParam Long userId, @RequestParam Long friendId) {
-        try {
-            friendService.addFriend(userId, friendId);
-            return new ResponseEntity<>("Friend added successfully", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<User> addFriend(@RequestParam Long userId, @RequestParam Long friendId) {
+        Optional<User> friendOptional = friendService.addFriend(userId, friendId);
+        return friendOptional.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 
     @PostMapping("/remove")
-    public ResponseEntity<String> removeFriend(@RequestParam Long userId, @RequestParam Long friendId) {
-        try {
-            friendService.removeFriend(userId, friendId);
-            return new ResponseEntity<>("Friend removed successfully", HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<User> removeFriend(@RequestParam Long userId, @RequestParam Long friendId) {
+        Optional<User> friendOptional = friendService.removeFriend(userId, friendId);
+        return friendOptional.map(ResponseEntity::ok)
+                .orElseGet(() -> ResponseEntity.badRequest().build());
     }
 }
