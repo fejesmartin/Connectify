@@ -23,6 +23,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { VisitUserProfileComponent } from './visit-user-profile/visit-user-profile.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { MatFormFieldModule } from '@angular/material/form-field'
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { MatFormFieldModule } from '@angular/material/form-field'
     PostfeedComponent,
     CreatepostComponent,
     VisitUserProfileComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    NotificationsComponent
   ],
   imports: [
     BrowserModule,

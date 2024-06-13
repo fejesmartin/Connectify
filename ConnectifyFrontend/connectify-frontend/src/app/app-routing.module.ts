@@ -6,7 +6,7 @@ import { FeedComponent } from './feed/feed.component';
 import { VisitUserProfileComponent } from './visit-user-profile/visit-user-profile.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'postfeed', component: PostfeedComponent },
   { path: 'feed', component: FeedComponent },
