@@ -1,0 +1,14 @@
+<div class="notification-container">
+    <button (click)="toggleNotifications()" class="notification-button">
+      Notifications
+    </button>
+    <div class="notifications-dropdown" *ngIf="showNotifications">
+        <div class="notifications-list">
+            <div *ngFor="let friend of this.friends" class="notification-item">
+              {{ friend.username }} added you as a friend
+            </div>
+          </div>
+          
+    </div>
+  </div>
+  
